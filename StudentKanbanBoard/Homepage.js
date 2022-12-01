@@ -13,7 +13,7 @@ const tasks = [
   "Item Here"
 ];
 
-export default function HomePage() {
+export default function HomePage({navigation}) {
     return (
         <SafeAreaView style={{flex:1, paddingTop:90}}>
       <ScrollView style={{flexGrow:1, width: Dimensions.get('window').width, marginTop: 10}}>
