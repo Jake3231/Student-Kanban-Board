@@ -63,32 +63,6 @@ export default function Dashboard({navigation}) {
         <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>{title}</Text>
       )}
     />
-      {/*<ScrollView contentInsetAdjustmentBehavior='automatic' style={{flexGrow:1, width: Dimensions.get('window').width, marginTop: 10}}>
-      <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>In Progress</Text>
-      {tasks.map((item) => {
-                 if (item.state === TaskState.inProgress) {
-                return (
-                <TaskCard title={item.title} color={findColorForCourseID(item.class)} />
-                )
-                 }
-              })}
-      <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>To Do</Text>
-              {tasks.map((item) => {
-                 if (item.state === TaskState.toDo) {
-                return (
-                  <TaskCard title={item.title} color={findColorForCourseID(item.class)} />
-                )
-                 }
-              })}
-        <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>Completed</Text>
-        {tasks.map((item) => {
-                 if (item.state === TaskState.completed) {
-                return (
-                  <TaskCard title={item.title} color={findColorForCourseID(item.class)} />
-                )
-                 }
-              })}
-            </ScrollView>*/}
         <StatusBar style="auto" />
         </View>
     );
