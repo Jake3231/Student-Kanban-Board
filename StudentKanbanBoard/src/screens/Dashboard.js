@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions, SectionList } from 'react-native';
 import {
   SafeAreaView,
   SafeAreaProvider,
@@ -43,20 +43,28 @@ const courses = [
   {
   name: "Software Engineering",
   courseCode: "CS3354",
-  color: 'red'
+  color: 'rgba(255,0,0,0.5)'
   },
   {
     name: "Systems Programming & Unix",
     courseCode: "CS3377",
-    color: 'green'
+    color: 'rgba(0,255,0,0.5)'
     }
 ]
 
 export default function Dashboard({navigation}) {
     return (
         <View style={{flex:1}}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{flexGrow:1, width: Dimensions.get('window').width, marginTop: 10}}>
-      <Text style={{fontSize:20, marginLeft: 15}}>In Progress</Text>
+          <SectionList
+      sections={[{title: "In Progress", data: tasks.filter(task => task.state === TaskState.inProgress)}, {title: "To Do", data: tasks.filter(task => task.state === TaskState.toDo)}, {title: "Completed", data: tasks.filter(task => task.state === TaskState.completed)}]}
+      keyExtractor={(item, index) => item + index}
+      renderItem={({ item }) => <TaskCard title={item.title} color={findColorForCourseID(item.class)} />}
+      renderSectionHeader={({ section: { title } }) => (
+        <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>{title}</Text>
+      )}
+    />
+      {/*<ScrollView contentInsetAdjustmentBehavior='automatic' style={{flexGrow:1, width: Dimensions.get('window').width, marginTop: 10}}>
+      <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>In Progress</Text>
       {tasks.map((item) => {
                  if (item.state === TaskState.inProgress) {
                 return (
@@ -64,7 +72,7 @@ export default function Dashboard({navigation}) {
                 )
                  }
               })}
-      <Text style={{fontSize:20, marginLeft: 15}}>To Do</Text>
+      <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>To Do</Text>
               {tasks.map((item) => {
                  if (item.state === TaskState.toDo) {
                 return (
@@ -72,7 +80,7 @@ export default function Dashboard({navigation}) {
                 )
                  }
               })}
-        <Text style={{fontSize:20, marginLeft: 15}}>Completed</Text>
+        <Text style={{fontSize:20, marginLeft: 15, fontWeight:'600', marginBottom:5}}>Completed</Text>
         {tasks.map((item) => {
                  if (item.state === TaskState.completed) {
                 return (
@@ -80,7 +88,7 @@ export default function Dashboard({navigation}) {
                 )
                  }
               })}
-      </ScrollView>
+            </ScrollView>*/}
         <StatusBar style="auto" />
         </View>
     );
