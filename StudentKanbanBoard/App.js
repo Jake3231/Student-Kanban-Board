@@ -10,7 +10,7 @@ import {
   RegisterScreen,
   ResetPasswordScreen,
   Dashboard,
-  AddTaskSheet
+  AddTaskSheet,
 } from './src/screens'
 
 //import AddTaskSheet from './src/screens' //Workaround

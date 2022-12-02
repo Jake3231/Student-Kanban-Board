@@ -7,27 +7,91 @@ import {
   useSafeAreaInsets,
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
+import TaskCard from '../components/TaskCard'
+
+const TaskState = { inProgress: 'InProgress', completed: 'Completed', toDo: 'ToDo'};
 
 const tasks = [
-  "Test",
-  "Item Here"
+  {
+    title: "Project Phase 5",
+    class: "CS3354",
+    state: TaskState.inProgress
+  },
+  {
+    title: "Project Phase 4",
+    class: "CS3354",
+    state: TaskState.completed
+  },
+  {
+    title: "Project Phase 3",
+    class: "CS3354",
+    state: TaskState.completed
+  },
+  {
+    title: "Project Phase 6",
+    class: "CS3354",
+    state: TaskState.toDo
+  },
+  {
+    title: "Unix Exam",
+    class: "CS3377",
+    state: TaskState.toDo
+  }
 ];
+
+const courses = [
+  {
+  name: "Software Engineering",
+  courseCode: "CS3354",
+  color: 'red'
+  },
+  {
+    name: "Systems Programming & Unix",
+    courseCode: "CS3377",
+    color: 'green'
+    }
+]
 
 export default function Dashboard({navigation}) {
     return (
         <View style={{flex:1}}>
-      <ScrollView style={{flexGrow:1, width: Dimensions.get('window').width, marginTop: 10}}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{flexGrow:1, width: Dimensions.get('window').width, marginTop: 10}}>
       <Text style={{fontSize:20, marginLeft: 15}}>In Progress</Text>
+      {tasks.map((item) => {
+                 if (item.state === TaskState.inProgress) {
+                return (
+                <TaskCard title={item.title} color={findColorForCourseID(item.class)} />
+                )
+                 }
+              })}
       <Text style={{fontSize:20, marginLeft: 15}}>To Do</Text>
               {tasks.map((item) => {
+                 if (item.state === TaskState.toDo) {
                 return (
-                <Text style={{backgroundColor:'rgba(52, 52, 52, 0.2)', width:'80%', alignContent:'center', justifyContent:'center', flex:1, fontSize:16, textAlign:'center', overflow:'hidden', borderRadius: 7, paddingVertical:5, marginVertical: 5, marginHorizontal: '10%'}}>{item}</Text>
+                  <TaskCard title={item.title} color={findColorForCourseID(item.class)} />
                 )
-
+                 }
               })}
         <Text style={{fontSize:20, marginLeft: 15}}>Completed</Text>
+        {tasks.map((item) => {
+                 if (item.state === TaskState.completed) {
+                return (
+                  <TaskCard title={item.title} color={findColorForCourseID(item.class)} />
+                )
+                 }
+              })}
       </ScrollView>
         <StatusBar style="auto" />
         </View>
     );
+
+    function findColorForCourseID(courseCode) {
+      const result = courses.find((element) => {
+        return element.courseCode === courseCode;
+      })
+      if (result === undefined) {
+        return 'yellow'
+      }
+      return result.color
+    }
   }
