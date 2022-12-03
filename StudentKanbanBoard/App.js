@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-native-paper'
 import { Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { AntDesign } from '@expo/vector-icons';
 import { theme } from './src/core/theme'
 import {
@@ -15,7 +15,7 @@ import {
 } from './src/screens'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Stack = createStackNavigator()
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
@@ -30,7 +30,7 @@ export default function App() {
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Stack.Screen name="AddTaskSheet" options={{ presentation: 'modal', headerShown:true, headerTitle:'Add' }} component={AddTaskSheet} />
+          <Stack.Screen name="AddTaskSheet" options={{ presentation: 'modal', headerShown:true, headerTitle:'Add Task' }} component={AddTaskSheet} />
           <Stack.Screen options={({ navigation }) => ({
             headerShown: true,
           headerLargeTitle: true,
